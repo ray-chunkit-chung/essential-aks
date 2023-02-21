@@ -2,6 +2,8 @@
 
 https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli
 
+https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/aks/tutorial-kubernetes-scale.md
+
 Before you add your cluster to Azure Arc, you’ll need:
 
 **To identify or create a Kubernetes cluster**
