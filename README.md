@@ -6,6 +6,155 @@ This tutorial is based on the following materials:
 - The tutorial flow is from <https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli>
 - The aks doc is here <https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/aks/tutorial-kubernetes-scale.md>
 
+## Step 1 Try the azure vote app in localhost
+
+```bash
+docker compose -f "docker-compose.yaml" up -d --build 
+```
+
+Visit <http://localhost:8080/>
+
+## Login az cli
+
+Create a .env file
+
+```bash
+export SUBSCRIPTION="xxxxx"
+export TENANT="xxxx"
+export LOCATION="xxxx"
+export RESOURCE_GROUP="xxxx"
+acrName
+```
+
+Install az cli
+
+```bash
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
+```bash
+source .env
+az login --tenant $TENANT
+az account set -s $SUBSCRIPTION
+az group create --name $RESOURCE_GROUP --location $LOCATION
+az acr create --resource-group $RESOURCE_GROUP --name $ACR_NAME --sku $ACR_SKU
+az acr login --name $ACR_NAME
+```
+
+## Step 2 create container registry
+
+```bash
+source .env
+az acr create --resource-group $RESOURCE_GROUP --name $ACR_NAME --sku $ACR_SKU
+az acr login --name $ACR_NAME
+export ARC_SERVER="$(az acr list --resource-group $RESOURCE_GROUP --query "[].{acrLoginServer:loginServer}" | jq '.[0].acrLoginServer' | tr -d '"')"
+```
+
+## Step 3 Push image to acr
+
+Assume env variable $ARC_SERVER contains the arc server url
+
+```bash
+docker tag mcr.microsoft.com/azuredocs/azure-vote-front:v1 $ARC_SERVER/azure-vote-front:v1
+docker push $ARC_SERVER/azure-vote-front:v1
+```
+
+Check if the repo exists
+
+```bash
+az acr repository list --name $ACR_NAME --output table
+az acr repository show-tags --name $ACR_NAME --repository azure-vote-front --output table
+```
+
+## Step 4 Create aks
+
+Install kubectl
+
+```bash
+az aks install-cli
+```
+
+```bash
+source .env
+
+# create aks cluster
+az aks create \
+    --resource-group $RESOURCE_GROUP \
+    --name $AKS_NAME \
+    --node-count 2 \
+    --generate-ssh-keys \
+    --attach-acr $ACR_NAME
+
+# Configure kubectl to connect to aks
+az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_NAME
+```
+
+Check nodes
+
+```bash
+kubectl get nodes
+```
+
+## Step 5 Run app in aks
+
+Assume env variable $ARC_SERVER contains the arc server url. This is used in azure-vote-all-in-one-redis.yaml
+
+Publish app
+
+```bash
+kubectl apply -f azure-vote-all-in-one-redis.yaml
+```
+
+Check health status
+
+```bash
+kubectl get pods
+kubectl get service azure-vote-front --watch
+```
+
+## (Optional) Scale pods/nodes manually
+
+Scale pods
+
+```bash
+kubectl scale --replicas=5 deployment/azure-vote-front
+kubectl get pods
+```
+
+Scale nodes
+
+```bash
+az aks scale --resource-group $RESOURCE_GROUP --name $AKS_NAME --node-count 3
+```
+
+## Step 6 Scale pods automatically
+
+```bash
+az aks show --resource-group $RESOURCE_GROUP --name $AKS_NAME --query kubernetesVersion --output table
+```
+
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
+```
+
+```bash
+kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
+```
+
+```bash
+kubectl apply -f azure-vote-hpa.yaml
+```
+
+Check hpa
+
+```bash
+kubectl get hpa
+```
+
+
+## Old notes
+
+
 Before you add your cluster to Azure Arc, you’ll need:
 
 **To identify or create a Kubernetes cluster**
