@@ -1,8 +1,10 @@
 # essential-aks
 
-https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli
+This tutorial is based on the following materials:
 
-https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/aks/tutorial-kubernetes-scale.md
+- The azure-vote app is from <https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/aks/tutorial-kubernetes-prepare-app.md>
+- The tutorial flow is from <https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli>
+- The aks doc is here <https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/aks/tutorial-kubernetes-scale.md>
 
 Before you add your cluster to Azure Arc, you’ll need:
 
@@ -18,7 +20,6 @@ You can connect to the internet over a public endpoint, through a proxy server, 
 
 Create an Azure Arc Private link scope
 
-
 To set up your local machine
 
 Azure CLI
@@ -31,25 +32,20 @@ Install the latest connectedk8s and k8s-configuration, k8s-extension, customloca
 Kubeconfig file with cluster admin permissions
 The file should be accessible via your CLI tooling. Learn how to get a kubeconfig file
 
-
 ## Step X Learn how to create a Kubernetes cluster
 
 [Learn how to create a Kubernetes cluster](https://kind.sigs.k8s.io/docs/user/quick-start/#creating-a-cluster)
 
-
-
 ## Step X Access to ports 443 and 9418
 
-https://aka.ms/ArcK8sOutboundURLs
-
+<https://aka.ms/ArcK8sOutboundURLs>
 
 ## Step X Create an Azure Arc Private Link Scope
 
-
 ## Step X Local machine install az cli and extensions
-connectedk8s and k8s-configuration, k8s-extension, customlocation CLI extensions
 
+connectedk8s and k8s-configuration, k8s-extension, customlocation CLI extensions
 
 ## Step X Local machine install cli, extensions
 
-get a kubeconfig file https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/
+get a kubeconfig file <https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/>
