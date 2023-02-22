@@ -151,9 +151,7 @@ Check hpa
 kubectl get hpa
 ```
 
-
 ## Old notes
-
 
 Before you add your cluster to Azure Arc, you’ll need:
 
