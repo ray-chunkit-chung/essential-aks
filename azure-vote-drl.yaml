@@ -26,6 +26,14 @@ spec:
             #   time: 7200s
             #   interval: 75s
           http:
-            http2MaxRequests: 1000
+            http1MaxRequests: 100
+            http2MaxRequests: 100
             maxRequestsPerConnection: 10
+        outlierDetection:
+          consecutive5xxErrors: 3
+          consecutiveErrors: 7
+          interval: 5m
+          baseEjectionTime: 15m
+          maxEjectionPercent: 90
 
+          
