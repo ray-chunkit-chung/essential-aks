@@ -102,7 +102,7 @@ Assume env variable $ARC_SERVER contains the arc server url. This is used in azu
 Publish app
 
 ```bash
-kubectl apply -f azure-vote-all-in-one-redis.yaml
+kubectl apply -f azure-vote-deploy.yaml
 ```
 
 Check health status
