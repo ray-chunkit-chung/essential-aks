@@ -35,5 +35,3 @@ spec:
           interval: 5m
           baseEjectionTime: 15m
           maxEjectionPercent: 90
-
-          
