@@ -6,6 +6,10 @@ This tutorial is based on the following materials:
 - The tutorial flow is from <https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli>
 - The aks doc is here <https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/aks/tutorial-kubernetes-scale.md>
 
+Very good insight of Istio
+
+<https://qiita.com/hiro8ma/items/1d622deffa3f8e7520c2>
+
 ## Step 1 Try the azure vote app in localhost
 
 ```bash
