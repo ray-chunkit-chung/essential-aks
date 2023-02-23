@@ -97,12 +97,15 @@ kubectl get nodes
 
 ## Step 5 Run app in aks
 
-Assume env variable $ARC_SERVER contains the arc server url. This is used in azure-vote-all-in-one-redis.yaml
+Assume env variable $ARC_SERVER contains the arc server url. This is used in azure-vote-all-in-one-redis.yaml.
+
+The resources will be created in the order they appear in the file. Therefore, it's best to specify the service first, since that will ensure the scheduler can spread the pods associated with the service as they are created by the controller(s), such as Deployment.
 
 Publish app
 
 ```bash
-kubectl apply -f azure-vote-deploy.yaml
+kubectl apply -f azure-vote-service.yaml \
+              -f azure-vote-deploy.yaml
 ```
 
 Check health status
