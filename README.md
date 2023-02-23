@@ -242,7 +242,7 @@ See here for more <https://istio.io/latest/docs/reference/config/networking/dest
 
 #### Istio virtual service
 
-This defines a set of traffic routing
+This defines a set of traffic routing when a host is addressed. Each routing rule defines matching criteria for traffic of a specific protocol. If the traffic is matched, then it is sent to a named destination service (or subset/version of it) defined in the registry.
 
 ```bash
 kubectl apply -f azure-vote-va.yaml

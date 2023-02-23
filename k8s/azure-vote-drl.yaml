@@ -1,13 +1,19 @@
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: bookinfo-ratings
+  name: drl-azure-vote-front
 spec:
   host: svc-azure-vote-front.azure-vote.svc.cluster.local
   trafficPolicy:
     loadBalancer:
       simple: LEAST_REQUEST
   subsets:
+    - name: v1
+      labels:
+        version: v1
+      trafficPolicy:
+        loadBalancer:
+          simple: LEAST_REQUEST
     - name: alt1
       labels:
         version: alt1
