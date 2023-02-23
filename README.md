@@ -16,10 +16,9 @@ This tutorial is based on the following materials:
 
 <https://qiita.com/hiro8ma/items/1d622deffa3f8e7520c2> Summarizing by google-translating:
 
-(Image from https://qiita.com/hiro8ma)
+(Image from <https://qiita.com/hiro8ma>)
 
 ![image](https://user-images.githubusercontent.com/26511618/220852382-e10ff90d-f00f-45e0-ac56-1546c7c76fcf.png)
-
 
 ### Microservice challenging points
 
@@ -236,6 +235,11 @@ This teaches pods how traffic can access the services
 kubectl apply -f azure-vote-drl.yaml
 ```
 
+-
+- OutlierDetection: A Circuit breaker implementation that tracks the status of each individual host in the upstream service.
+
+See here for more <https://istio.io/latest/docs/reference/config/networking/destination-rule/>
+
 #### Istio virtual service
 
 This defines a set of traffic routing
@@ -243,6 +247,19 @@ This defines a set of traffic routing
 ```bash
 kubectl apply -f azure-vote-va.yaml
 ```
+
+## Spec template
+
+A template to communicate the k8s non-functional spec. The numbers are dummy
+
+- Latency: < 10 ms
+- Throughput: 1,000 req/sec
+- Apdex: 1 <https://en.wikipedia.org/wiki/Apdex>
+- Memory: < 100 MB
+- CPU: 100 ci
+- Load Time: < 1 sec
+- Concurrency: 1,000 calls/sec
+- Scaling: cpu & mem based
 
 ## Old notes
 
