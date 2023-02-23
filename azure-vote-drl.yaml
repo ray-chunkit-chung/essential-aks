@@ -1,0 +1,31 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: bookinfo-ratings
+spec:
+  host: svc-azure-vote-front.azure-vote.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: LEAST_REQUEST
+  subsets:
+    - name: alt1
+      labels:
+        version: alt1
+      trafficPolicy:
+        loadBalancer:
+          simple: ROUND_ROBIN
+    - name: alt2
+      labels:
+        version: alt2
+      trafficPolicy:
+        connectionPool:
+          tcp:
+            maxConnections: 100
+            # connectTimeout: 30ms
+            # tcpKeepalive:
+            #   time: 7200s
+            #   interval: 75s
+          http:
+            http2MaxRequests: 1000
+            maxRequestsPerConnection: 10
+

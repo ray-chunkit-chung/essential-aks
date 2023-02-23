@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: azure-vote-back
-  namespace: azure-vote-back
+  name: dep-azure-vote-back
+  namespace: azure-vote
   labels:
     appName: azure-vote-back
     version: v1
@@ -41,8 +41,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: azure-vote-front
-  namespace: azure-vote-front
+  name: dep-azure-vote-front
+  namespace: azure-vote
   labels:
     appName: azure-vote-front
     version: v1

@@ -10,8 +10,7 @@ This tutorial is based on the following materials:
 
 ## Summary of gke vs aks vs eks 2022
 
-https://komodor.com/blog/the-2022-managed-kubernetes-showdown-gke-vs-aks-vs-eks/#:~:text=The%20key%20difference%20relates%20to,cluster%20for%20the%20control%20plane.
-
+<https://komodor.com/blog/the-2022-managed-kubernetes-showdown-gke-vs-aks-vs-eks/#:~:text=The%20key%20difference%20relates%20to>,cluster%20for%20the%20control%20plane.
 
 ## An insight of Istio
 
@@ -66,7 +65,11 @@ https://komodor.com/blog/the-2022-managed-kubernetes-showdown-gke-vs-aks-vs-eks/
 
 - A contol plane talks to data plan by Discovery Configuration Certificates
 
-## Step 1 Try the azure vote app in localhost
+## Getting started
+
+Step-by-step publishing a redis app to aks
+
+### Step 1 Try the azure vote app in localhost
 
 ```bash
 docker compose -f "docker-compose.yaml" up -d --build 
@@ -74,7 +77,7 @@ docker compose -f "docker-compose.yaml" up -d --build
 
 Visit <http://localhost:8080/>
 
-## Login az cli
+### Step 2 Login az cli
 
 Create a .env file
 
@@ -101,7 +104,7 @@ az acr create --resource-group $RESOURCE_GROUP --name $ACR_NAME --sku $ACR_SKU
 az acr login --name $ACR_NAME
 ```
 
-## Step 2 create container registry
+### Step 3 Create azure container registry
 
 ```bash
 source .env
@@ -110,7 +113,7 @@ az acr login --name $ACR_NAME
 export ARC_SERVER="$(az acr list --resource-group $RESOURCE_GROUP --query "[].{acrLoginServer:loginServer}" | jq '.[0].acrLoginServer' | tr -d '"')"
 ```
 
-## Step 3 Push image to acr
+### Step 4 Push image to acr
 
 Assume env variable $ARC_SERVER contains the arc server url
 
@@ -119,14 +122,14 @@ docker tag mcr.microsoft.com/azuredocs/azure-vote-front:v1 $ARC_SERVER/azure-vot
 docker push $ARC_SERVER/azure-vote-front:v1
 ```
 
-Check if the repo exists
+Validate if the repo exists
 
 ```bash
 az acr repository list --name $ACR_NAME --output table
 az acr repository show-tags --name $ACR_NAME --repository azure-vote-front --output table
 ```
 
-## Step 4 Create aks
+### Step 5 Create aks
 
 Install kubectl
 
@@ -149,13 +152,13 @@ az aks create \
 az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_NAME
 ```
 
-Check nodes
+Validate nodes
 
 ```bash
 kubectl get nodes
 ```
 
-## Step 5 Run app in aks
+### Step 6 Run app in aks
 
 Assume env variable $ARC_SERVER contains the arc server url. This is used in azure-vote-all-in-one-redis.yaml.
 
@@ -168,14 +171,14 @@ kubectl apply -f azure-vote-service.yaml \
               -f azure-vote-deploy.yaml
 ```
 
-Check health status
+Validate health status
 
 ```bash
 kubectl get pods
 kubectl get service azure-vote-front --watch
 ```
 
-## (Optional) Scale pods/nodes manually
+### (Optional) Scale pods/nodes manually
 
 Scale pods
 
@@ -190,7 +193,7 @@ Scale nodes
 az aks scale --resource-group $RESOURCE_GROUP --name $AKS_NAME --node-count 3
 ```
 
-## Step 6 Scale pods automatically
+### Step 7 Scale pods automatically
 
 ```bash
 az aks show --resource-group $RESOURCE_GROUP --name $AKS_NAME --query kubernetesVersion --output table
@@ -204,14 +207,36 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/down
 kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
 ```
 
+### Step 8 Apply other settings
+
+#### Horizonal pods autoscale
+
+This teaches pods how to scale automatically
+
 ```bash
 kubectl apply -f azure-vote-hpa.yaml
 ```
 
-Check hpa
+Validate hpa
 
 ```bash
 kubectl get hpa
+```
+
+#### Istio destination rule
+
+This teaches pods how traffic can access the services
+
+```bash
+kubectl apply -f azure-vote-drl.yaml
+```
+
+#### Istio virtual service
+
+This defines a set of traffic routing
+
+```bash
+kubectl apply -f azure-vote-va.yaml
 ```
 
 ## Old notes
