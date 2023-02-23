@@ -16,6 +16,11 @@ This tutorial is based on the following materials:
 
 <https://qiita.com/hiro8ma/items/1d622deffa3f8e7520c2> Summarizing by google-translating:
 
+(Image from https://qiita.com/hiro8ma)
+
+![image](https://user-images.githubusercontent.com/26511618/220852382-e10ff90d-f00f-45e0-ac56-1546c7c76fcf.png)
+
+
 ### Microservice challenging points
 
 - Dependency resolution -- Needs to be properly load balanced
