@@ -196,3 +196,11 @@ connectedk8s and k8s-configuration, k8s-extension, customlocation CLI extensions
 ## Step X Local machine install cli, extensions
 
 get a kubeconfig file <https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/>
+
+## Finally
+
+Delete everything
+
+```bash
+az group delete --yes --name $RESOURCE_GROUP
+```
