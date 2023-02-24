@@ -92,7 +92,7 @@ Check nodes
 kubectl get nodes
 ```
 
-## Step 5 Run app in aks
+## Step 5 Publish app in aks
 
 Assume env variable $ARC_SERVER contains the arc server url. This is used in azure-vote-all-in-one-redis.yaml
 
