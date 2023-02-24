@@ -36,15 +36,13 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 source .env
 az login --tenant $TENANT
 az account set -s $SUBSCRIPTION
-az group create --name $RESOURCE_GROUP --location $LOCATION
-az acr create --resource-group $RESOURCE_GROUP --name $ACR_NAME --sku $ACR_SKU
-az acr login --name $ACR_NAME
 ```
 
 ## Step 2 create container registry
 
 ```bash
 source .env
+az group create --name $RESOURCE_GROUP --location $LOCATION
 az acr create --resource-group $RESOURCE_GROUP --name $ACR_NAME --sku $ACR_SKU
 az acr login --name $ACR_NAME
 export ARC_SERVER="$(az acr list --resource-group $RESOURCE_GROUP --query "[].{acrLoginServer:loginServer}" | jq '.[0].acrLoginServer' | tr -d '"')"
@@ -74,10 +72,9 @@ Install kubectl
 az aks install-cli
 ```
 
+Create aks cluster
 ```bash
 source .env
-
-# create aks cluster
 az aks create \
     --resource-group $RESOURCE_GROUP \
     --name $AKS_NAME \
