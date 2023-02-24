@@ -153,6 +153,9 @@ kubectl get hpa
 
 <https://azure.microsoft.com/en-us/pricing/details/monitor/>
 
+![image](https://user-images.githubusercontent.com/26511618/221086773-e9cc0125-9536-461a-a013-0c5be5ee9d99.png)
+
+
 ## Old notes
 
 Before you add your cluster to Azure Arc, you’ll need:
