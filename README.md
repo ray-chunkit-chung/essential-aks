@@ -73,6 +73,7 @@ az aks install-cli
 ```
 
 Create aks cluster
+
 ```bash
 source .env
 az aks create \
@@ -147,6 +148,10 @@ Check hpa
 ```bash
 kubectl get hpa
 ```
+
+## Health monitoring
+
+<https://azure.microsoft.com/en-us/pricing/details/monitor/>
 
 ## Old notes
 
