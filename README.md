@@ -141,6 +141,10 @@ kubectl get hpa
 
 ![image](https://user-images.githubusercontent.com/26511618/221086773-e9cc0125-9536-461a-a013-0c5be5ee9d99.png)
 
+https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+
+![image](https://user-images.githubusercontent.com/26511618/221089022-e96bba6b-9127-4a78-aaa3-2b8993ada83c.png)
+
 
 ## Old notes
 
