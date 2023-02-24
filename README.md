@@ -160,7 +160,7 @@ Validate nodes
 kubectl get nodes
 ```
 
-### Step 6 Run app in aks
+### Step 6 Publish app in aks
 
 Assume env variable $ARC_SERVER contains the arc server url. This is used in azure-vote-all-in-one-redis.yaml.
 
@@ -169,15 +169,16 @@ The resources will be created in the order they appear in the file. Therefore, i
 Publish app
 
 ```bash
-kubectl apply -f azure-vote-service.yaml \
-              -f azure-vote-deploy.yaml
+kubectl create namespace azure-vote
+kubectl apply -f k8s/azure-vote-service.yaml \
+              -f k8s/azure-vote-deploy.yaml
 ```
 
 Validate health status
 
 ```bash
 kubectl get pods
-kubectl get service azure-vote-front --watch
+kubectl get service svc-azure-vote-front --watch
 ```
 
 ### (Optional) Scale pods/nodes manually
