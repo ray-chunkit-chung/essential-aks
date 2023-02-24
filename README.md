@@ -103,15 +103,13 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 source .env
 az login --tenant $TENANT
 az account set -s $SUBSCRIPTION
-az group create --name $RESOURCE_GROUP --location $LOCATION
-az acr create --resource-group $RESOURCE_GROUP --name $ACR_NAME --sku $ACR_SKU
-az acr login --name $ACR_NAME
 ```
 
 ### Step 3 Create azure container registry
 
 ```bash
 source .env
+az group create --name $RESOURCE_GROUP --location $LOCATION
 az acr create --resource-group $RESOURCE_GROUP --name $ACR_NAME --sku $ACR_SKU
 az acr login --name $ACR_NAME
 export ARC_SERVER="$(az acr list --resource-group $RESOURCE_GROUP --query "[].{acrLoginServer:loginServer}" | jq '.[0].acrLoginServer' | tr -d '"')"
