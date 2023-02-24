@@ -87,7 +87,6 @@ az aks create \
 az aks get-credentials --resource-group $RESOURCE_GROUP --name $AKS_NAME
 ```
 
-Check nodes
 
 ```bash
 kubectl get nodes
@@ -100,7 +99,7 @@ Assume env variable $ARC_SERVER contains the arc server url. This is used in azu
 Publish app
 
 ```bash
-kubectl apply -f azure-vote-all-in-one-redis.yaml
+kubectl apply -f k8s/azure-vote-all-in-one-redis.yaml
 ```
 
 Check health status
@@ -128,26 +127,13 @@ az aks scale --resource-group $RESOURCE_GROUP --name $AKS_NAME --node-count 3
 ## Step 6 Scale pods automatically
 
 ```bash
-az aks show --resource-group $RESOURCE_GROUP --name $AKS_NAME --query kubernetesVersion --output table
-```
-
-```bash
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.3.6/components.yaml
-```
-
-```bash
-kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
-```
-
-```bash
-kubectl apply -f azure-vote-hpa.yaml
-```
-
-Check hpa
-
-```bash
+kubectl apply -f k8s/azure-vote-hpa.yaml
 kubectl get hpa
 ```
+
+
+
+
 
 ## Health monitoring
 
