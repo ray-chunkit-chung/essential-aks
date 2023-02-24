@@ -1,0 +1,43 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vs-azure-vote-front
+spec:
+  hosts:
+    # - "*"
+    - azure-vote-front.default.svc.cluster.local
+  http:
+    - name: "azure-vote-v1-route"
+      route:
+        - destination:
+            host: azure-vote-front.default.svc.cluster.local
+            subset: v1
+    - name: "azure-vote-v9000-routes"
+      match:
+        - uri:
+            prefix: "/v9000"
+      route:
+        - destination:
+            host: azure-vote-front.default.svc.cluster.local
+            subset: v1
+
+    # - name: "azure-vote-v2-routes"
+    #   match:
+    #     - uri:
+    #         prefix: "/wpcatalog"
+    #     - uri:
+    #         prefix: "/consumercatalog"
+    #   rewrite:
+    #     uri: "/newcatalog"
+    #   route:
+    #     - destination:
+    #         host: svc-azure-vote-front.azure-vote.svc.cluster.local
+    #         subset: v2
+    #         port:
+    #           number: 8080
+    #       weight: 100
+    #   timeout: 1s
+    #   retries:
+    #     attempts: 3
+    #     perTryTimeout: 200ms
+    #     retryOn: 5xx

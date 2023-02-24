@@ -131,8 +131,12 @@ kubectl apply -f k8s/azure-vote-hpa.yaml
 kubectl get hpa
 ```
 
+## Step 6 Istio setting
 
-
+```bash
+kubectl apply -f k8s/azure-vote-drl.yaml
+kubectl apply -f k8s/azure-vote-vs.yaml
+```
 
 
 ## Health monitoring
@@ -198,4 +202,14 @@ Delete everything
 
 ```bash
 az group delete --yes --name $RESOURCE_GROUP
+```
+
+```powershell
+# admin
+choco install kubernetes-helm
+```
+
+```bash
+helm repo add istio https://istio-release.storage.googleapis.com/charts
+helm repo update
 ```
