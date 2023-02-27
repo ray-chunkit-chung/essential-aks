@@ -141,6 +141,18 @@ kubectl apply -f k8s/azure-vote-drl.yaml
 kubectl apply -f k8s/azure-vote-vs.yaml
 ```
 
+Spec template
+A template to communicate the k8s non-functional spec. The numbers are dummy
+
+Latency: < 10 ms
+Throughput: 1,000 req/sec
+Apdex: 1 https://en.wikipedia.org/wiki/Apdex
+Memory: < 100 MB
+CPU: 100 ci
+Load Time: < 1 sec
+Concurrency: 1,000 calls/sec
+Scaling: cpu & mem based
+
 ## Health monitoring
 
 <https://azure.microsoft.com/en-us/pricing/details/monitor/>
