@@ -8,6 +8,7 @@ This tutorial is based on the following materials:
 - Summary of gke vs aks vs eks <https://komodor.com/blog/the-2022-managed-kubernetes-showdown-gke-vs-aks-vs-eks/#:~:text=The%20key%20difference%20relates%20to>,cluster%20for%20the%20control%20plane.
 - aks auto scale https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
 - persist volume https://earthly.dev/blog/kubernetes-persistent-volumes/
+- aks upgrade ops https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-run-at-scale
 
 ## Step 1 Try the azure vote app in localhost
 
