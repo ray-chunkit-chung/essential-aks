@@ -6,6 +6,8 @@ This tutorial is based on the following materials:
 - The tutorial flow is from <https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli>
 - The aks doc is here <https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/aks/tutorial-kubernetes-scale.md>
 - Summary of gke vs aks vs eks <https://komodor.com/blog/the-2022-managed-kubernetes-showdown-gke-vs-aks-vs-eks/#:~:text=The%20key%20difference%20relates%20to>,cluster%20for%20the%20control%20plane.
+- aks auto scale https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+- persist volume https://earthly.dev/blog/kubernetes-persistent-volumes/
 
 ## Step 1 Try the azure vote app in localhost
 
