@@ -3,7 +3,11 @@ kind: DestinationRule
 metadata:
   name: drl-azure-vote-front
 spec:
+<<<<<<< HEAD
   host: svc-azure-vote-front.azure-vote.svc.cluster.local
+=======
+  host: azure-vote-front.default.svc.cluster.local
+>>>>>>> fe56b34093ce648360d19d6bb73d04f4e2f33844
   trafficPolicy:
     loadBalancer:
       simple: LEAST_REQUEST
@@ -32,7 +36,11 @@ spec:
             #   time: 7200s
             #   interval: 75s
           http:
+<<<<<<< HEAD
             http1MaxRequests: 100
+=======
+            # http1MaxRequests: 100
+>>>>>>> fe56b34093ce648360d19d6bb73d04f4e2f33844
             http2MaxRequests: 100
             maxRequestsPerConnection: 10
         outlierDetection:

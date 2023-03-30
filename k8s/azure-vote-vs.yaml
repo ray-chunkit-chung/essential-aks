@@ -4,13 +4,30 @@ metadata:
   name: vs-azure-vote-front
 spec:
   hosts:
+<<<<<<< HEAD
     - "*"
   # - svc-azure-vote-front.azure-vote.svc.cluster.local
+=======
+    # - "*"
+    - azure-vote-front.default.svc.cluster.local
+>>>>>>> fe56b34093ce648360d19d6bb73d04f4e2f33844
   http:
     - name: "azure-vote-v1-route"
       route:
         - destination:
+<<<<<<< HEAD
             host: svc-azure-vote-front.azure-vote.svc.cluster.local
+=======
+            host: azure-vote-front.default.svc.cluster.local
+            subset: v1
+    - name: "azure-vote-v9000-routes"
+      match:
+        - uri:
+            prefix: "/v9000"
+      route:
+        - destination:
+            host: azure-vote-front.default.svc.cluster.local
+>>>>>>> fe56b34093ce648360d19d6bb73d04f4e2f33844
             subset: v1
 
     # - name: "azure-vote-v2-routes"
